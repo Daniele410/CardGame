@@ -25,20 +25,31 @@ public class View {
 	}
 
 	public void promptForFlip() {
+		System.out.println("Press enter to reveal cards");
+		keyboard.nextLine();
+		controller.flipCards();
 	}
 
 	public void promptForNewGame() {
+		System.out.println("Press enter to deal again");
+		keyboard.nextLine();
+		controller.startGame();
 	}
 	
-	public void showWinner(String name) {
+	public void showWinner(String playerName) {
+		System.out.println("Winner is "+ playerName+" !");
+	
 			}
 
-	public void showPlayerName(int size, String playerName) {
+	public void showPlayerName(int playerIndex, String playerName) {
+		System.out.println("["+playerIndex+"]["+playerName+"]");
 	}
 
-	public void showFaceDownCardPlayer(int i, String name) {
+	public void showFaceDownCardPlayer(int playerIndex, String playerName) {
+		System.out.println("["+playerIndex+"]["+playerName+"][x][x]");
 	}
 
-	public void showCardForPlayer(int i, String name, String string, String string2) {
+	public void showCardForPlayer(int i, String playerName, String rank, String suit) {
+		System.out.println("["+i+"]["+playerName+"]["+rank+"]["+suit+"]");
 	}
 }
