@@ -5,7 +5,7 @@ public class Player {
 	private Hand hand;
 
 	public Player(String name) {
-		super();
+		
 		this.name = name;
 		hand = new Hand();
 	}

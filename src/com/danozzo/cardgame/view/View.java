@@ -45,8 +45,8 @@ public class View {
 		System.out.println("["+playerIndex+"]["+playerName+"]");
 	}
 
-	public void showFaceDownCardPlayer(int playerIndex, String playerName) {
-		System.out.println("["+playerIndex+"]["+playerName+"][x][x]");
+	public void showFaceDownCardPlayer(int i, String playerName) {
+		System.out.println("["+i+"]["+playerName+"][x][x]");
 	}
 
 	public void showCardForPlayer(int i, String playerName, String rank, String suit) {

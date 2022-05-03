@@ -8,8 +8,6 @@ import com.danozzo.cardgame.model.Player;
 import com.danozzo.cardgame.model.PlayingCard;
 import com.danozzo.cardgame.view.View;
 
-
-
 public class GameController {
 
 	enum GameState {
@@ -20,7 +18,6 @@ public class GameController {
 	List<Player> players;
 	Player winner;
 	View view;
-
 	GameState gameState;
 
 	public GameController(Deck deck, View view) {
@@ -41,15 +38,14 @@ public class GameController {
 		case CardsDealt:
 			view.promptForFlip();
 			break;
-
 		case WinnerRevealed:
 			view.promptForNewGame();
 			break;
+		case AddingPlayers:
+			break;
 		default:
 			break;
-
 		}
-
 	}
 
 	public void addPlayer(String playerName) {
@@ -77,18 +73,18 @@ public class GameController {
 		for (Player player : players) {
 			PlayingCard pc = player.getCard(0);
 			pc.flip();
-			view.showCardForPlayer(playerIndex++, player.getName(), pc.getRank().toString(), pc.getSuit().toString());
+			view.showCardForPlayer(playerIndex++, player.getName(), 
+					pc.getRank().toString(), pc.getSuit().toString());
 		}
-		
+
 		evaluateWinner();
 		displayWinner();
 		rebuildDeck();
 		gameState = GameState.WinnerRevealed;
 		this.run();
-
 	}
 
-	private void evaluateWinner() {
+	void evaluateWinner() {
 		Player bestPlayer = null;
 		int bestRank = -1;
 		int bestSuit = -1;
@@ -111,6 +107,7 @@ public class GameController {
 					}
 				}
 			}
+
 			if (newBestPlayer) {
 				bestPlayer = player;
 				PlayingCard pc = player.getCard(0);
@@ -119,18 +116,17 @@ public class GameController {
 			}
 		}
 
+		winner = bestPlayer;
 	}
 
-	private void displayWinner() {
+	void displayWinner() {
 		view.showWinner(winner.getName());
-
 	}
 
-	private void rebuildDeck() {
+	void rebuildDeck() {
 		for (Player player : players) {
 			deck.returnCardToDeck(player.removeCard());
 		}
-
 	}
 
 }
